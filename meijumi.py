@@ -15,13 +15,14 @@ URL = 'http://www.yyets.com/tv/schedule'
 
 
 class MeiJuMi:
-    def __init__(self, url):
+    def __init__(self, url, today):
         self.url = url
+        self.today = today
 
     def month_end_day(self):
         '''获取当月最后一天的时间数，用于使用正则时搜索相应的XX号关键词'''
 
-        now = datetime.datetime.today()
+        now = self.today
         year = now.year
         month = now.month
         if month == 12:
@@ -33,9 +34,7 @@ class MeiJuMi:
 
     def get_day(self):
         '''获天当天的天数'''
-
-        today = datetime.datetime.today()
-        return today.day
+        return self.today.day
 
     def set_day_str(self, day=None):
         '''生成搜索的XX号关键词'''
